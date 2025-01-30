@@ -21,7 +21,7 @@ export default async function ProductDetail({ params }) {
   const price = priceFormat(product.price);
   return (
     <main className="px-32 pt-8 pb-3 grid grid-cols-3 gap-12 h-full absolute">
-      <div className="overflow-hidden">
+      <div>
         <Image
           src={product.product_image}
           alt={product.name}
@@ -30,11 +30,11 @@ export default async function ProductDetail({ params }) {
           className="rounded-xl"
         />
       </div>
-      <div className="flex flex-col overflow-auto">
+      <div className="flex flex-col overflow-y-auto">
         <p className="text-2xl font-bold">{product.name}</p>
         <p className="text-base mt-4">{product.description}</p>
       </div>
-      <div className="flex flex-col h-fit border border-slate-400 rounded-xl p-3 overflow-y-auto mx-8">
+      <div className="flex flex-col h-fit border border-slate-400 rounded-xl p-3 mx-8">
         <div className="font-bold text-base">Informasi Produk</div>
         <div className="mt-2">
           Stock total: <span className="font-bold">{product.stocks}</span>
