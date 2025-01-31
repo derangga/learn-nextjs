@@ -1,4 +1,5 @@
 import { ProductCard } from "@/components/product_card";
+import { Header } from "@/components/header";
 import { API_URL } from "@/utils/url";
 import Link from "next/link";
 
@@ -18,14 +19,17 @@ export default async function Home() {
 
   const products = await fetchProduct();
   return (
-    <main>
-      <div className="grid grid-cols-4 gap-4 px-4 pt-4">
-        {products.map((product) => (
-          <Link key={product._id} href={`/products/${product._id}`}>
-            <ProductCard {...product}></ProductCard>
-          </Link>
-        ))}
-      </div>
-    </main>
+    <>
+      <Header />
+      <main>
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 px-12 pt-4">
+          {products.map((product) => (
+            <Link key={product._id} href={`/products/${product._id}`}>
+              <ProductCard {...product}></ProductCard>
+            </Link>
+          ))}
+        </div>
+      </main>
+    </>
   );
 }

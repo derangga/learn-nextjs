@@ -6,9 +6,7 @@ export default async function ProductEdit({ params }) {
   const { id } = await params;
   async function fetchProduct() {
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        cache: "no-store",
-      });
+      const response = await fetch(`${API_URL}/${id}`);
       const product = await response.json();
       return product;
     } catch (error) {
@@ -40,13 +38,12 @@ export default async function ProductEdit({ params }) {
           product_image: image,
         }),
       });
-
-      revalidatePath(`/products/${id}`);
-      revalidatePath(`/`);
     } catch (error) {
       console.log(`[ERROR] ${error}`);
     }
 
+    revalidatePath(`/products/${id}`);
+    revalidatePath(`/`);
     redirect(`/products/${id}`);
   }
 
